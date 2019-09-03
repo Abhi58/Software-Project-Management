@@ -1,0 +1,32 @@
+1) Benefits of using scrum:
+     a) Better product quality : Cutomers and stakeholders can easily determine if the 
+        software matches their requirements during sprint reviews, thus making product 
+        quality better.
+     b) Team satisfaction and Productivity : Scrum address and enhances productivity and 
+        team satisfaction by focusing on the work that is more valuable and rewarding to 
+        the team, thus eliminating unnecessary work.
+     c) Decreased time to market : Scrum delivers the product much faster than other 
+        traditional methods as the development and delivery happens incrementally, thus 
+        we don't have to wait for the entire project to finish for release.
+     d) Increased return on investment : Higher return on investment is mainly due to 
+        decrease in market release time and also there are very few defects due to less 
+        wasted work and speed deployments.
+     e) Transparency : Efforts, results and all the steps are visible to the internal members
+        of the team, scrum master and stakeholders ( as they need to know the status of the 
+        progress ), thus creating transparency in the project development.
+     
+
+2) According to Cynefin framework,the five problem domains are :
+   a) Simple 
+   b) Complicated 
+   c) Complex 
+   d) Chaotic 
+   e) Disorder 
+
+   Scrum is well suited for complex domain in the Cynefin framework becuase according to 
+   complex domain we must first test something, analyse the obtained results and make our 
+   next move based on the outcomes and feedback which can be effectively done using scrum 
+   by using sprints.
+
+
+
