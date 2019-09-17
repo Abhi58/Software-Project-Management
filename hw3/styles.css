@@ -1,0 +1,17 @@
+.image{
+    width:100%;
+}
+
+.box .form-control{
+    height: 50px;
+}
+
+.button{
+    text-align: center;
+}
+
+.button .btn{
+    font-size: large;
+    height: 50px;
+}
+
