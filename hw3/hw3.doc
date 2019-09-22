@@ -1,0 +1,11 @@
+
+1) Given,
+	the rate of arrival of homework assignments, lambda = 0.8
+	the rate of departure of homework assignments, mu = 1
+
+	The average waiting time of a homework assignment to finish for this student  = 1/(mu - lambda) = 1/(1-0.8) = 5
+	
+	So, the average waiting time is 5 days.
+
+
+2) Please run the index.html page to see results. For code, check the index.html and styles.css pages.
