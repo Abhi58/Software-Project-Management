@@ -1,0 +1,13 @@
+1)
+  a) Three C's for User Stories:
+     - Card 
+     - Conversion
+     - Confirmation
+  b) INVEST for good user stories means, the stories should be:
+     - Independent
+     - Negotiable
+     - Valuable
+     - Estimatable
+     - Small 
+     - Testable 
+
