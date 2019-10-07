@@ -1,0 +1,25 @@
+﻿1)What are two different units for PBI estimation? 
+Story points (70%) :
+1) Measure the bigness or magnitude of a PBI
+2) Combine factors like complexity and physical size into one relative size measure 
+
+ Ideal days (30%) :
+ 1)Is NOT the same thing as elapsed time 
+ 2)Is in the risk of misinterpretation
+
+
+
+2. What is velocity?
+A)Is the amount of work completed each sprint,Velocity is used as a planning tool and as a team diagnostic metric ,It does NOT include the size numbers of partially completed PBI’s.
+
+3. Why the velocity should not be used for performance metric?
+A) It should NOT be used as a performance metric in an attempt to judge team productivity 
+ b)Can motivate wasteful and dangerous behavior 
+ c) Can have the issue of point inflation 
+d) Don’t do this
+
+
+4. What does it mean for the following symbols in Planning Poker cards: “∞”, “?”, “π”?
+A)∞- means the value is too large
+      ? -means the value is unknown
+      π- means taking a break 

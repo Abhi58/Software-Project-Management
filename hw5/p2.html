@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            Finding Factorial
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script>
+                function factorial(x) 
+                { 
+                if (x === 0)
+                {
+                    return 1;
+                }
+                return x * factorial(x-1);
+                }
+        </script>
+    </head>
+
+    <body>
+        <h1>Factorial Calculation</h1>
+        <form id="factform">
+            Base Number: <input type="text" name="number" id="factnumber">
+            <br><br>
+            <input type="button" onclick="myFunction(document.getElementById('factnumber').value)" value="Submit">
+        </form>
+        <p>Result is <span id="res"></span></p>
+
+        <script>
+                
+            function myFunction(factnumber) {
+                if(factnumber>=0 && !isNaN(factnumber)){
+                    document.getElementById("res").innerHTML=factorial(factnumber);
+                }else{
+                    document.getElementById("res").innerHTML="NaN";
+                }
+            }  
+        </script>
+    </body>
+</html>
