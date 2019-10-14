@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<header>
+    <title>ACS567 Search</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"  />
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+</header>
+
+<body>
+    <div class="main-container container">
+        <form>
+            <img src="http://localhost:5050/public/ACS567Search.png" alt="ACS567 Search" class="center-block img-responsive" width=600 height=75 />
+        </form>
+        <div class="col-xs-12">
+            <input name="q" id="req" type=“text” class="form-control input-lg" /><br />
+            <div class="button">
+                <button id="submit1" class="btn btn-default btn-lg">ACS567 Search</button>
+                <button id="submit2" class="btn btn-default btn-lg">I'm feeling lucky</button>
+            </div>
+            <br>
+            <p id="temp"></p>
+        </div>
+    </div>
+
+    <script>
+        var $data = $('#temp');
+        $("#submit1").click(function () {
+            getTemperature();
+        });
+        $("#submit2").click(function () {
+            getTemperature();
+        });
+        function getTemperature() {
+            if ($("#req").val().startsWith("Temp:")) {
+                var location = $("#req").val().slice(5).trim();
+                $.ajax({
+                    method: 'POST',
+                    url: "index.js",
+                    data:{
+                        q: location,
+                        units: 'imperial',
+                        appid: 'a9542ba3ab845690a73767396645cdb4'
+                    } ,
+                    dataType: "json",
+                    success: function (data) {
+                        $data.append('Current temperature at ', data.name, ' is ', data.main.temp, 'F');
+                    }
+                });
+            }
+            else {
+                window.location.href = "http://www.google.com/search?q=" + $("#req").val().trim();
+            }
+        };
+
+    </script>
+</body>
+
+</html>
