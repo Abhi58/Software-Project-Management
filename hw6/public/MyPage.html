@@ -37,7 +37,7 @@
             if ($("#req").val().startsWith("Temp:")) {
                 var location = $("#req").val().slice(5).trim();
                 $.ajax({
-                    method: 'POST',
+                    type: 'GET',
                     url: "index.js",
                     data:{
                         q: location,
@@ -47,6 +47,9 @@
                     dataType: "json",
                     success: function (data) {
                         $data.append('Current temperature at ', data.name, ' is ', data.main.temp, 'F');
+                    },
+                    error: function(data){
+                        alert('Please enter a valid location');
                     }
                 });
             }

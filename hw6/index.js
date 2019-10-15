@@ -3,61 +3,66 @@ var http = require('http');
 var https = require('https');
 var fs = require('fs');
 var qs = require('querystring');
-var post;
-var weatherurl = 'https://api.openweathermap.org/data/2.5/weather'
+const path = require('path');
+const url = require('url');
 
 //2.
 var server = http.createServer(function (req, resp) {
-    //3.
-    if (req.url === "/"  || req.url === "/index.js") {
-        fs.readFile("public/MyPage.html", function (error, pgResp) {
-            if (error) {
-                resp.writeHead(404);
-                resp.write('Contents you are looking are Not Found');
-            } else {
-                resp.writeHead(200, { 'Content-Type': 'text/html' });
-                resp.write(pgResp);
-                if(req.method === 'POST'){
-                  let body = '';
-                  req.on('data', chunk => {
-                      body += chunk;
-                  });
-                  req.on('end', () => {
-                    post=qs.parse(body);
-                    weatherurl += '?q='+post.q+'&units='+post.units+'&appid='+post.appid;
 
-                    https.get(weatherurl, (response) => {
-                      let rawData = ''
-                    
-                      response.on('data', (chunk) => { 
-                        rawData += chunk 
-                      })
-                      response.on('end', () => {
-                        try {
-                          const parsedData = JSON.parse(rawData);
-                        } catch (e) {
-                          console.error(e.message)
-                        }
-                      })
-                      
-                    }).on('error', (error) => {
-                      console.error(`Got error: ${error.message}`)
-                  })
-                  });
-                }
-            }  
-            resp.end();
-        });
-    } else {
-        //4.
-        resp.writeHead(200, { 'Content-Type': 'text/html' });
-        resp.write('<h2>To go to search page enter :</h2> ' + req.url);
-        resp.end();
+    let parsedUrl = url.parse(req.url, true);
+    let queryData = parsedUrl.query;
+    weatherurl = 'https://api.openweathermap.org/data/2.5/weather?q=';
+
+    if (req.url === '/' || req.url.match('/index.js')) {
+
+
+        if (req.url === '/index.js' || req.url === '/') {
+
+            fs.readFile('./public/MyPage.html', 'UTF-8', function (err, data) {
+                resp.writeHead(200, { 'Content-Type': 'text/html' });
+                resp.end(data);
+            });
+        } else {
+              
+            weatherurl +=  queryData.q + '&units=' + queryData.units + '&appid=' + queryData.appid;
+            https.get(weatherurl, function (response) {
+
+                var body = '';
+
+                response.on('data', function (chunk) {
+                    body += chunk;
+                });
+
+                response.on('end', () => {
+
+                    let result = JSON.parse(body);
+                    if (result["cod"] == 404) {
+                        resp.writeHead(404);
+
+                    } else {
+                        resp.writeHead(200, { 'Content-Type': 'application/json' });
+                    }
+                    resp.end(body);
+                });
+            });
+        }
     }
-});
+
+    else if (req.url.match('\.png$')) {
+
+        var image = path.join(__dirname, req.url);
+        var fileStream = fs.createReadStream(image);
+        resp.writeHead(200, { 'Content-Type': 'image/png' });
+        fileStream.pipe(resp);
+    }
+    else {
+
+        resp.writeHead(404, { 'Content-Type': 'text/html' });
+        resp.end('No content found')
+    }
+  });
 
 //5.
 server.listen(5050);
  
 console.log('Server Started listening on 5050');
-
