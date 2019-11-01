@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script>
+        function getTemperature() {
+            var $data = $('#temp');
+            var search = document.getElementById("inputtext").value
+            search = search.toUpperCase();
+            if (search.startsWith("TEMP:")) {
+                var loc = search
+                var url = 'server.js';
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        q: loc,
+                    },
+
+                    success: function (data) {
+                        $data.append('Current temperature at ', data.name, ' is ', data.main.temp, 'F');
+
+                    },
+                    error: function (data) {
+                        alert('Please enter a valid location');
+                    }
+
+
+                });
+                return false;
+            }
+            else {
+                return true;
+            }
+
+
+
+        }
+
+    </script>
+</head>
+
+
+
+<body>
+
+
+    <div class="container">
+
+
+        <div style="text-align:center">
+            <img class="img-fluid" src="ACS567Search.png" alt="ACS567 Logo">
+            <form action="server.js" onsubmit="return getTemperature()">
+                <div class="form-group">
+
+                    <input type="text" name="q" class="form-control" id="inputtext" placeholder="Search">
+
+                </div>
+
+                <button type="submit" value="Submit" class="btn btn-primary">ACS567 Search</button>
+                <button type="submit" value="Submit" class="btn btn-primary">I'm Feeling Lucky</button>
+            </form>
+            <br>
+            <br>
+
+        </div>
+
+        <p id="temp"></p>
+
+    </div>
+
+
+</body>
+
+</html>
